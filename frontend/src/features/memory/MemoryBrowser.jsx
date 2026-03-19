@@ -262,6 +262,7 @@ export default function MemoryBrowser() {
                                             <span className="text-slate-600 font-normal">(lower = higher priority)</span>
                                         </label>
                                         <input 
+                                            aria-label="Priority"
                                             type="number"
                                             min="0"
                                             value={editPriority}
@@ -276,6 +277,7 @@ export default function MemoryBrowser() {
                                             <span className="text-slate-600 font-normal">(when to recall)</span>
                                         </label>
                                         <input 
+                                            aria-label="Disclosure"
                                             type="text"
                                             value={editDisclosure}
                                             onChange={e => setEditDisclosure(e.target.value)}
@@ -292,6 +294,7 @@ export default function MemoryBrowser() {
                             )}>
                                 {editing ? (
                                     <textarea 
+                                        aria-label="Memory content"
                                         value={editContent}
                                         onChange={e => setEditContent(e.target.value)}
                                         className="w-full h-96 p-6 bg-transparent text-slate-200 font-mono text-sm leading-relaxed focus:outline-none resize-y"

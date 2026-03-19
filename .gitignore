@@ -15,6 +15,11 @@ snapshots/
 assets/
 frontend/dist/
 backups/
+.tmp/
+frontend/playwright-report/
+frontend/test-results/
 
 # Sisyphus tooling artifacts
 .sisyphus/
+/.venv/
+/.idea/

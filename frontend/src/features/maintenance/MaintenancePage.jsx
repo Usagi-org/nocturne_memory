@@ -139,6 +139,7 @@ export default function MaintenancePage() {
           {/* Checkbox */}
           <button
             onClick={(e) => toggleSelect(item.id, e)}
+            aria-label={isChecked ? `Deselect memory ${item.id}` : `Select memory ${item.id}`}
             className="mt-0.5 flex-shrink-0 p-0.5 rounded transition-colors hover:bg-slate-700/30"
           >
             {isChecked ? (
@@ -264,6 +265,7 @@ export default function MaintenancePage() {
       <div className="flex items-center gap-3 mb-4">
         <button
           onClick={() => toggleSelectAll(items)}
+          aria-label={`Toggle select all ${label}`}
           className="p-0.5 rounded transition-colors hover:bg-slate-700/30"
           title={allSelected ? "Deselect all" : "Select all"}
         >
