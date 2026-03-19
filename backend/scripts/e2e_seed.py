@@ -27,6 +27,16 @@ def _resolve_database_url() -> str:
     return database_url
 
 
+def _reset_snapshot_dir(snapshot_dir: Path):
+    snapshot_dir.mkdir(parents=True, exist_ok=True)
+
+    for child in snapshot_dir.iterdir():
+        if child.is_dir() and not child.is_symlink():
+            shutil.rmtree(child)
+        else:
+            child.unlink()
+
+
 async def _reset_sqlite_state(database_url: str):
     from db.database import DatabaseManager
 
@@ -70,9 +80,7 @@ async def _reset_state(database_url: str, snapshot_dir: Path):
 
     await close_db()
 
-    if snapshot_dir.exists():
-        shutil.rmtree(snapshot_dir)
-    snapshot_dir.mkdir(parents=True, exist_ok=True)
+    _reset_snapshot_dir(snapshot_dir)
 
     if database_url.startswith("sqlite"):
         sqlite_path = Path(database_url.split("///", 1)[1])

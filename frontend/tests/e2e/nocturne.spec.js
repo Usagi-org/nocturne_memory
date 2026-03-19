@@ -23,8 +23,19 @@ test('@smoke integrates a pending review group', async ({ page }) => {
 test('rejects a pending review group and restores the old content', async ({ page }) => {
   await page.goto('/review');
 
+  const rollbackResponse = page.waitForResponse((response) => {
+    return (
+      response.request().method() === 'POST' &&
+      response.url().includes('/api/review/groups/') &&
+      response.url().endsWith('/rollback') &&
+      response.status() === 200
+    );
+  });
+
   page.once('dialog', (dialog) => dialog.accept());
   await page.getByRole('button', { name: /reject group/i }).click();
+  await rollbackResponse;
+  await expect(page.getByText('Empty Sequence')).toBeVisible();
 
   await page.goto('/memory?domain=core&path=review_item');
 

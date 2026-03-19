@@ -16,6 +16,7 @@ jobs:
       SNAPSHOT_DIR: ${{ github.workspace }}/.tmp/snapshots
       VALID_DOMAINS: core,writer,game,notes,project
       CORE_MEMORY_URIS: core://agent,core://my_user
+      API_TOKEN: ""
       PLAYWRIGHT_BASE_URL: http://127.0.0.1:3000
       PYTHON: python
 
@@ -91,6 +92,7 @@ jobs:
       SNAPSHOT_DIR: ${{ github.workspace }}/.tmp/full-snapshots
       VALID_DOMAINS: core,writer,game,notes,project
       CORE_MEMORY_URIS: core://agent,core://my_user
+      API_TOKEN: ""
       PLAYWRIGHT_BASE_URL: http://127.0.0.1:3000
       PYTHON: python
 
@@ -167,6 +169,7 @@ jobs:
       POSTGRES_PASSWORD: nocturne
       VALID_DOMAINS: core,writer,game,notes,project
       CORE_MEMORY_URIS: core://agent,core://my_user
+      API_TOKEN: ""
       NGINX_PORT: 8765
       PLAYWRIGHT_BASE_URL: http://127.0.0.1:8765
       E2E_SEED_COMMAND: docker compose exec -T backend-api python scripts/e2e_seed.py
